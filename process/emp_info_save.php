@@ -13,7 +13,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $picpath = 'uploads/' .$pic_filename;
     }
 
-    include '/db_connection.php';
+    include 'db_connection.php';
 
     $conn = OpenCon();
     $sql1 = "INSERT INTO personal_infotbl(fname, mname, lname, suffix, birth_date, gender, nationality, civil_status ,department, designation, qualified_dependent_status, employee_status, pay_date, employee_no, contact_no, email_address,other_social_media_account ,social_media_account_id, address_line1, address_line2, municipality, state_province,country ,zip_code, picpath)
