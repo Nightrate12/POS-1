@@ -18,6 +18,7 @@ $(document).ready(function () {
       success: function (result) {
         if (result.ok) {
           alert("Data successfully added!");
+          $("#pic-box").html("");
           $("#uploadfile").val("");
           $("#fname").val("");
           $("#mname").val("");
