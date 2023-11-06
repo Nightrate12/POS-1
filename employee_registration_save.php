@@ -16,8 +16,8 @@
     
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="js/emp_info_save.js?v.3"></script>
-    <link rel="stylesheet" href="css/employee_registration.css?v.3">
+    <script src="js/emp_info_save.js"></script>
+    <link rel="stylesheet" href="css/employee_registration.css">
 <style>
         body {
         background-image: url('IMAGES/employeebackground.jpg');
@@ -36,7 +36,7 @@
         <h1 style="text-align:center; margin-bottom:30px; font-size:47px; font-family:Algerian; color:BLACK"><b>Joel's Employee Personal Information</b></h1>
             <div class="a-form-group mt-3" style="float:left; clear:block; width:20%;" >
                 <div id="pic-box" style='width:170px; height:150px; overflow:hidden; margin-top:7px; margin-left:5px; background:none; border:thin solid #d3d3d3'></div>
-                <input type="file" style="margin-top:10px; textalign:center;" id="uploadfile" name="uploadfile" value=""/>
+                <input type="file" style="margin-top:10px; text-align:center;" id="uploadfile" name="uploadfile" value=""/>
             </div>
 
     </form>
@@ -46,7 +46,7 @@
             <div class="form-row">
 
                 <div class="form-group col">
-                    <label for="fname" class="mb-0 controllabel">First Name</label>
+                    <label for="fname" class="mb-0 control-label">First Name</label>
                     <input type="text" class="form-control mt-0"name="fname" id="fname" value="">
                 </div>
 
@@ -56,7 +56,7 @@
                 </div>
 
                 <div class="form-group col">
-                    <label for="lname" class="mb-0 controllabel">Last Name</label>
+                    <label for="lname" class="mb-0 control-label">Last Name</label>
                     <input type="text" class="form-control mt-0"name="lname" id="lname" value="">
                 </div>
 
@@ -73,7 +73,7 @@
             </div>
 
             <div class="form-group col-3">
-                <label for="gender" class="mb-0 controllabel">Gender</label>
+                <label for="gender" class="mb-0 control-label">Gender</label>
                 <select class="form-control" name="gender"id="gender">
                     <option value=''>-- select one --</option>
                     <option value="M">Male</option>
@@ -82,7 +82,7 @@
             </div>
 
             <div class="form-group col">
-                <label for="nationality" class="mb-0 controllabel">Nationality</label>
+                <label for="nationality" class="mb-0 control-label">Nationality</label>
                 <select class="form-control mt-0" name="nationality"id="nationality">
                     <option value="">-- select one --</option>
                     <option value="Afghan">Afghan</option>
@@ -281,7 +281,7 @@
             </div>
 
             <div class="form-group col-3">
-                <label for="civil_status" class="mb-0 controllabel">Civil Status</label>
+                <label for="civil_status" class="mb-0 control-label">Civil Status</label>
                 <select class="form-control" name="civil_status"id="civil_status">
                     <option value=''>-- select one --</option>
                     <option value="M">Married</option>
@@ -296,7 +296,7 @@
             <div class="a-fields-group mt-0">
             <div class="form-row">
                 <div class="form-group col">
-                <label for="fname" class="mb-0 controllabel">Department</label>
+                <label for="fname" class="mb-0 control-label">Department</label>
                 <input type="text" class="form-control mt-0"name="department" id="department" value="">
             </div>
 
@@ -328,12 +328,12 @@
 
             <div class="form-row">
             <div class="form-group col-4">
-                <label for="pay_day" class="mb-0 controllabel">Paydate</label>
+                <label for="pay_day" class="mb-0 control-label">Paydate</label>
                 <input type="date" class="form-control mt-0"name="pay_date" id="pay_date">
             </div>
 
             <div class="form-group col">
-                <label for="employee_number" class="mb-0 controllabel">Employee Number</label>
+                <label for="employee_number" class="mb-0 control-label">Employee Number</label>
                 <input type="text" class="form-control mt-0"name="employee_number" id="employee_number" value="">
             </div>
         </div>
@@ -345,19 +345,19 @@
         <div class="a-fields-group mt-0">
             <div class="form-row">
             <div class="form-group col-5">
-                <label for="contact_number" class="mb-0 controllabel">Contact No.</label>
+                <label for="contact_number" class="mb-0 control-label">Contact No.</label>
                 <input type="text" class="form-control mt-0"name="contact_number" id="contact_number" value="">
             </div>
 
             <div class="form-group col">
-                <label for="email" class="mb-0 controllabel">Email</label>
+                <label for="email" class="mb-0 control-label">Email</label>
                 <input type="text" class="form-control mt-0"name="email_address" id="email_address" value="">
             </div>
             </div>
 
             <div class="form-row">
             <div class="form-group col-5">
-                <label for="social_media" class="mb-0 controllabel">Other (Social Media)</label>
+                <label for="social_media" class="mb-0 control-label">Other (Social Media)</label>
                 <select class="form-control" name="social_media"id="social_media">
                     <option value=''>-- select one --</option>
                     <option value="facebook_messenger">Facebook Messenger</option>
@@ -370,7 +370,7 @@
             </div>
 
             <div class="form-group col">
-                <label for="social_media_account_id" class="mb-0 controllabel">Social Media Account ID/No.</label>
+                <label for="social_media_account_id" class="mb-0 control-label">Social Media Account ID/No.</label>
                 <input type="text" class="form-control mt-0"name="social_media_account_id" id="social_media_account_id">
             </div>
             </div>
@@ -597,7 +597,7 @@
                     <option value="St Barthelemy">St Barthelemy</option>
                     <option value="St Eustatius">St Eustatius</option>
                     <option value="St Helena">St Helena</option>
-                    <option value="St Kitts-Nevis">St KittsNevis</option>
+                    <option value="St Kitts-Nevis">St Kitts-Nevis</option>
                     <option value="St Lucia">St Lucia</option>
                     <option value="St Maarten">St Maarten</option>
                     <option value="St Pierre & Miquelon">St Pierre & Miquelon</option>
@@ -674,7 +674,7 @@
             </div>
         </div>
         </div>
-        <button type="submit" class="btn btn-primary" id = "savebtn"name="savebtn" style="width:130px;">Save</button>
+        <button type="submit" class="btn btn-primary" id = "save" name="save" style="width:130px;">Save</button>
         <button type="reset" class="btn btn-outline-secondary" id = "cancelbtn" name="cancelbtn" style="width:130px;">Cancel</button>
     </form>
     </div>
