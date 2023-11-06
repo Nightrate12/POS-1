@@ -35,7 +35,7 @@
         <form id="pic-upload" class="a-form" enctype="multipart/form-data" method="post" width='840'>
         <h1 style="text-align:center; margin-bottom:30px; font-size:47px; font-family:Algerian; color:BLACK"><b>Joel's Employee Personal Information</b></h1>
             <div class="a-form-group mt-3" style="float:left; clear:block; width:20%;" >
-                <div id="pic-box" style='width:170px; height:150px; overflow:hidden; margin-top:7px; margin-left:5px; background:none; border:thin solid #d3d3d3'></div>
+                <div id="pic-box" style='width:170px; height:150px; overflow:hidden; margin-top:85px; margin-left:5px; background:none; border:thin solid #d3d3d3'></div>
                 <input type="file" style="margin-top:10px; text-align:center;" id="uploadfile" name="uploadfile" value=""/>
             </div>
 
