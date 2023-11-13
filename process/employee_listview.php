@@ -2,10 +2,10 @@
 include 'db_connection.php';
 $conn = OpenCon();
 
-$sql = "SELECT id, employee_no, fname, mname, lname, suffix, birth_date, qualified_dpendent_status, civil_status, department, designation, employee_status FROM personal_infotbl";
+$sql = "SELECT id, employee_no, fname, mname, lname, suffix, birth_date, qualified_dependent_status, civil_status, department, designation, employee_status FROM personal_infotbl";
 if(isset($_GET['search'])){
     $employee_no = trim($_GET['search']);
-    $sql= "SELECT id, employee_no, fname, mname, lname, suffix, birth_date, qualified_dpendent_status, civil_status, department, designation, employee_status FROM personal_infotbl WHERE employee_no = $employee_no";
+    $sql= "SELECT id, employee_no, fname, mname, lname, suffix, birth_date, qualified_dependent_status, civil_status, department, designation, employee_status FROM personal_infotbl WHERE employee_no = $employee_no";
 }
 $result= $conn->query($sql);
 if($result){
