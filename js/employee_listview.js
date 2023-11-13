@@ -1,4 +1,4 @@
-$document.ready(function(){
+$(document).ready(function(){
     $('table tr').click(function(){
         var id= $(this).attr('row_id');
         window.open("http://localhost/lpu_web_application/employee_registration_update.php?id=" +id);
