@@ -58,15 +58,20 @@ $conn->close();
             <table class="table table-bordered table-hover" id="user_table">
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Employee Number</th>
-                        <th>Employee Name</th>
+                        <th>Income date</th>
+                        <th>Basic Rate Hour</th>
+                        <th>Basic Num Hrs</th>
                         <th>Basic Income</th>
-                        <th>Honorarium Income</th>
+                        <th>Hono Rate Hour</th>
+                        <th>Hono Num Hrs</th>
+                        <th>Hono Income</th>
+                        <th>Other Rate Hour</th>
+                        <th>Other Num Hrs</th>
                         <th>Other Income</th>
                         <th>Gross Income</th>
-                        <th>Total Deduction</th>
                         <th>Net Income</th>
-                        <th>Paydate</th>
                     </tr>
                 </thead>
                 </tbody>
