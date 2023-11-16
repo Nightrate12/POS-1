@@ -55,9 +55,11 @@
 
             </ul>
         </div>
-        <div class="col-8  flex-grow-1" style="background-image:url('IMAGES/background.jpg');background-attachment:fixed; background-size:cover;background-repeat: no-repeat;">
+        <div class="col-8  flex-grow-1"
+            style="background-image:url('IMAGES/background.jpg');background-attachment:fixed; background-size:cover;background-repeat: no-repeat;">
             <main class="container">
-                <h1 class="text-center my-1" style="font-family:Helvetica; font-size:70px;"><b>KITCHEN UTENSILS STORE</b>
+                <h1 class="text-center my-1" style="font-family:Helvetica; font-size:70px;"><b>KITCHEN UTENSILS
+                        STORE</b>
                 </h1>
                 <div class="">
                     <!-- dropdown -->
@@ -68,7 +70,8 @@
                                 More &#9776
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="kitchen.php" style="color: blue;">Kitchen Utensils</a>
+                                <li><a class="dropdown-item" href="kitchen.php" style="color: blue;">Kitchen
+                                        Utensils</a>
                                 </li>
                                 <li><a class="dropdown-item" href="drinks.php">Drinks</a></li>
                                 <li><a class="dropdown-item" href="perfume.php">Perfume</a></li>
@@ -236,33 +239,28 @@
                                     <h5>Order Discount Options:</h5>
                                 </li>
                                 <ul class="list-group list-group-horizontal gap-5">
-                                    <li class="" style="list-style-type: none;"><input class="form-check-input"
-                                            type="radio" name="flexRadioDefault" id="senior"
-                                            onclick="handleDiscounts(0.30)">
-                                        <label class="form-check-label" for="flexRadioDefault1">
-                                            Senior Citizen
-                                        </label>
+                                    <li class="" style="list-style-type: none;">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="senior"
+                                            onclick="handleDiscounts(0.12)" value="senior discount">
+                                        <label class="form-check-label" for="flexRadioDefault1">Senior Citizen
+                                            (12%)</label>
                                     </li>
                                     <li class="" style="list-style-type: none;"> <input class="form-check-input"
-                                            type="radio" name="flexRadioDefault" id="withcard"
-                                            onclick="handleDiscounts(0.20)">
-                                        <label class="form-check-label" for="flexRadioDefault1">
-                                            With Disc. Card
-                                        </label>
+                                            type="radio" name="flexRadioDefault" id="discountCard"
+                                            onclick="handleDiscounts(0.08)" value="discount card">
+                                        <label class="form-check-label" for="flexRadioDefault1">With Disc. Card
+                                            (8%)</label>
                                     </li>
                                     <li class="" style="list-style-type: none;"> <input class="form-check-input"
-                                            type="radio" name="flexRadioDefault" id="Empoyee"
-                                            onclick="handleDiscounts(0.15)">
-                                        <label class="form-check-label" for="flexRadioDefault1">
-                                            Employee Disc.
-                                        </label>
+                                            type="radio" name="flexRadioDefault" id="employee"
+                                            onclick="handleDiscounts(0.1)" value="employee discount">
+                                        <label class="form-check-label" for="flexRadioDefault1">Employee Discount
+                                            (10%)</label>
                                     </li>
                                     <li class="" style="list-style-type: none;"> <input class="form-check-input"
-                                            type="radio" name="flexRadioDefault" id="NoDiscount"
-                                            onclick="handleDiscounts(0)">
-                                        <label class="form-check-label" for="flexRadioDefault1">
-                                            No Disc.
-                                        </label>
+                                            type="radio" name="flexRadioDefault" id="noDiscount"
+                                            onclick="handleDiscounts(0)" value="no discount">
+                                        <label class="form-check-label" for="flexRadioDefault1">No Discount</label>
                                     </li>
                                 </ul>
                             </div>
