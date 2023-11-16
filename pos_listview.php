@@ -43,16 +43,16 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         }
 
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            background-image: url('IMAGES/employeebackground.jpg');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
+        background-image: url('IMAGES/employeebackground.jpg');
+        background-size: cover; 
+        background-repeat: no-repeat; 
+        background-attachment: fixed; 
+    }
+    .sidebar a:hover {
+            color: #00ffff;
         }
 
+        /* Sidebar Styles */
         .sidebar {
             background-color: #333;
             color: #fff;
@@ -80,8 +80,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         <li><a href="employee_listview.php">Employee Report</a></li>
         <li><a href="payroll_lab4.php">Payroll</a></li>
         <li><a href="payroll_listview.php">Payroll Report</a></li>
-        <li><a href="secret_shop.php">POS</a></li>
-        <li><a href="#">POS Sales Report</a></li>
+        <li><a href="perfume.php">POS</a></li>
+        <li><a href="pos_listview">POS Sales Report</a></li>
         <li><a href="user_account_page.php">User Account</a></li>
         <li><a href="login.php">Logout</a></li>
 

@@ -33,16 +33,16 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            background-image: url('IMAGES/employeebackground.jpg');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
+        background-image: url('IMAGES/employeebackground.jpg');
+        background-size: cover; 
+        background-repeat: no-repeat; 
+        background-attachment: fixed; 
+    }
+    .sidebar a:hover {
+            color: #00ffff;
         }
 
+        /* Sidebar Styles */
         .sidebar {
             background-color: #333;
             color: #fff;

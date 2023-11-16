@@ -112,7 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </style>
 </head>
 <body>
-<div class="sidebar">
+        <div class="sidebar">
         <h2>Joel's Store</h2>
         <ul>
             <li><a href="home_page.php">Home</a></li>
