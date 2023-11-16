@@ -38,30 +38,6 @@
                 background-attachment: fixed;
             }
 
-            .sidebar a:hover {
-                color: #00ffff;
-            }
-
-            /* Sidebar Styles */
-            .sidebar {
-                background-color: #333;
-                color: #fff;
-                width: 230px;
-                padding: 20px;
-                position: fixed;
-                top: 0;
-                left: 0;
-                height: 100%;
-            }
-
-            .sidebar a {
-                display: block;
-                color: #fff;
-                padding: 10px 0;
-                text-decoration: none;
-            }
-        }
-
         .sidebar a:hover {
             color: #00ffff;
         }
@@ -97,7 +73,7 @@
             <li><a href="payroll_lab4.php">Payroll</a></li>
             <li><a href="payroll_listview.php">Payroll Report</a></li>
             <li><a href="perfume.php">POS</a></li>
-            <li><a href="#">POS Sales Report</a></li>
+            <li><a href="pos_listview.php">POS Sales Report</a></li>
             <li><a href="user_account_page.php">User Account</a></li>
             <li><a href="login.php">Logout</a></li>
 

@@ -25,11 +25,49 @@
         background-repeat: no-repeat; 
         background-attachment: fixed; 
     }
+    .sidebar a:hover {
+            color: #00ffff;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            background-color: #333;
+            color: #fff;
+            width: 250px;
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+        }
+
+        .sidebar a {
+            display: block;
+            color: #fff;
+            padding: 10px 0;
+            text-decoration: none;
+        }
     </style>
 
     <title>Employee Registration</title>
 </head>
 <body>
+<div class="row flex">
+        <div class="sidebar">
+            <h2>Joel's Store</h2>
+            <ul>
+                <li><a href="home_page.php">Home</a></li>
+                <li><a href="employee_registration_save.php">Employee Registration</a></li>
+                <li><a href="employee_listview.php">Employee Report</a></li>
+                <li><a href="payroll_lab4.php">Payroll</a></li>
+                <li><a href="payroll_listview.php">Payroll Report</a></li>
+                <li><a href="perfume.php">POS</a></li>
+                <li><a href="pos_listview.php">POS Sales Report</a></li>
+                <li><a href="user_account_page.php">User Account</a></li>
+                <li><a href="login.php">Logout</a></li>
+
+            </ul>
+        </div>
 <div class="container">
     <div class="page_border">
         <form id="pic-upload" class="a-form" enctype="multipart/form-data" method="post" width='840'>

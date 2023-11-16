@@ -49,7 +49,7 @@
                 <li><a href="payroll_lab4.php">Payroll</a></li>
                 <li><a href="payroll_listview.php">Payroll Report</a></li>
                 <li><a href="drinks.php">POS</a></li>
-                <li><a href="#">POS Sales Report</a></li>
+                <li><a href="pos_listview.php">POS Sales Report</a></li>
                 <li><a href="user_account_page.php">User Account</a></li>
                 <li><a href="login.php">Logout</a></li>
 

@@ -88,9 +88,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             background-color: #fff;
             color: #888;
         }
+        .sidebar {
+            background-color: #333;
+            color: #fff;
+            width: 250px;
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+        }
+
+        .sidebar a {
+            display: block;
+            color: #fff;
+            padding: 10px 0;
+            text-decoration: none;
+        }
+        .sidebar a:hover {
+            color: #00ffff;
+        }
+
     </style>
 </head>
 <body>
+<div class="sidebar">
+        <h2>Joel's Store</h2>
+        <ul>
+            <li><a href="home_page.php">Home</a></li>
+            <li><a href="employee_registration_save.php">Employee Registration</a></li>
+            <li><a href="employee_listview.php">Employee Report</a></li>
+            <li><a href="payroll_lab4.php">Payroll</a></li>
+            <li><a href="payroll_listview.php">Payroll Report</a></li>
+            <li><a href="perfume.php">POS</a></li>
+            <li><a href="pos_listview.php">POS Sales Report</a></li>
+            <li><a href="user_account_page.php">User Account</a></li>
+            <li><a href="login.php">Logout</a></li>
+
+        </ul>
+    </div>
     <div class="container">
         <h2>User Account Information</h2>
         <div class="top-right">
