@@ -11,8 +11,5 @@ function handleNew() {
     document.getElementById('discountCard').checked = false
     document.getElementById('employee').checked = false
     document.getElementById('noDiscount').checked = false
-    // Uncheck all checkboxes
-    document.querySelectorAll('input[type="checkbox"]').forEach(function (checkbox) {
-        checkbox.checked = false;
-    });
+    
 }
