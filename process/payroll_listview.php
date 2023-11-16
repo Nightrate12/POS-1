@@ -29,8 +29,9 @@ $row['lname']. " " . $row['suffix']; ?></td>
 <td><?php echo $row['hono_income']; ?></td> 
 <td><?php echo $row [ 'other_income']; ?></td> 
 <td><?php echo $row['gross_income']; ?></td> 
-<td><?php echo $row['deductions']; ?></td> 
+<td><?php echo $row['total_deduction']; ?></td> 
 <td><?php echo $row['net_income']; ?></td> 
+<td><?php echo $row['pay_date']; ?></td> 
 </tr>
     <?php
     }
