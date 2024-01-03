@@ -1,6 +1,5 @@
 <?php
 include 'process/db_connection.php';
-include 'process/session_check.php';
 
 $conn = OpenCon();
 $sql = "SELECT * FROM `personal_infotbl`;";
@@ -52,12 +51,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         }
 
         body {
-        background-image: url('IMAGES/employeebackground.jpg');
-        background-size: cover; 
-        background-repeat: no-repeat; 
-        background-attachment: fixed; 
-    }
-    .sidebar a:hover {
+            background-image: url('IMAGES/employeebackground.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .sidebar a:hover {
             color: #00ffff;
         }
 
@@ -121,10 +121,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     </tr>
                 </thead>
                 <tbody>
-                                <?php
-                                if ($result) {
-                                    while ($item = $result->fetch_assoc()) {
-                                        echo "
+                    <?php
+                    if ($result) {
+                        while ($item = $result->fetch_assoc()) {
+                            echo "
                                 <tr class='clickable-row' style='cursor: pointer' data-href='employee_registration_save.php?id={$item['id']}'>
                                     <td class='py-6 ps-6 border'>$item[employee_no]</td>
                                     <td class='py-6 ps-6 border'>$item[fname] $item[mname] $item[lname]</td>
@@ -136,10 +136,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                                     <td class='py-6 ps-6 border'>$item[employee_status]</td>
                                 </tr>
                                 ";
-                                    }
-                                }
-                                ?>
-                            </tbody>
+                        }
+                    }
+                    ?>
+                </tbody>
             </table>
     </div>
     </form>
@@ -152,4 +152,5 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         })
     })
 </script>
+
 </html>

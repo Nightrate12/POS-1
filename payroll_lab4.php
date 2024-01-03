@@ -1,6 +1,6 @@
 <?php
-error_reporting(E_ALL);
-ini_set("display_errors", "On");
+include 'process/payroll.php';
+include 'process/payroll_fill.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -72,246 +72,6 @@ ini_set("display_errors", "On");
 
             </ul>
         </div>
-        <?php
-        function empty_inputbox()
-        {
-            $employee_no = "";
-            $employee_no = "";
-            $department = "";
-            $firstname = "";
-            $mname = "";
-            $surname = "";
-            $civil_status = "";
-            $designation = "";
-            $qualified_dependents = "";
-            $paydate = "";
-            $emp_status = "";
-            //decleration of variables where inputs are stored
-            $basic_rate_hour = "";
-            $basic_num_hours_cutoff = "";
-            $hono_rate_hour = "";
-            $hono_num_hours_cutoff = "";
-            $other_rate_hour = "";
-            $other_num_hours_cutoff = "";
-            $sss_contri = 0.00;
-            $philH_contri = 0.00;
-            $pagibig_contri = 100.00;
-            $tax_contri = 0.00;
-            $sss_loan = "";
-            $pagibig_loan = "";
-            $fs_deposit = "";
-            $fs_loan = "";
-            $salary_loan = "";
-            $other_loans = "";
-        }
-        //decleration of variables with fix data value for employee info
-        $employee_no = "2021-2-01379";
-        $department = "Department of Computer Studies";
-        $firstname = "Daniel John";
-        $mname = "Villanueva";
-        $surname = "Catamio";
-        $civil_status = "Single";
-        $designation = "Student";
-        $qualified_dependents = "ME";
-        $paydate = "March 31, 2023";
-        $emp_status = "Job Order";
-        //decleration of variables where inputs are stored
-        $basic_rate_hour = "";
-        $basic_num_hours_cutoff = "";
-        $hono_rate_hour = "";
-        $hono_num_hours_cutoff = "";
-        $other_rate_hour = "";
-        $other_num_hours_cutoff = "";
-        $sss_contri = 0.00;
-        $philH_contri = 0.00;
-        $pagibig_contri = 100.00;
-        $tax_contri = 0.00;
-        $sss_loan = "";
-        $pagibig_loan = "";
-        $fs_deposit = "";
-        $fs_loan = "";
-        $salary_loan = "";
-        $other_loans = "";
-
-        //declarion of variables that will the results of the given formula
-        $basic_income_cutoff = "";
-        $hono_income_cutoff = "";
-        $other_income_cutoff = "";
-        $gross_income = "";
-        $net_income = "";
-        $total_deduct = "";
-
-        //getting input from textbox and place it inside the variable by calling the name of the inputs
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-            // to press Calculate Gross Income button
-            if (isset($_POST["calculate_gross_income"])) {
-                $basic_rate_hour = $_POST["basic_rate_hour"];
-                $basic_num_hours_cutoff = $_POST["basic_num_hours_cutoff"];
-                $hono_rate_hour = $_POST["hono_rate_hour"];
-                $hono_num_hours_cutoff = $_POST["hono_num_hours_cutoff"];
-                $other_rate_hour = $_POST["other_rate_hour"];
-                $other_num_hours_cutoff = $_POST["other_num_hours_cutoff"];
-                $sss_loan = $_POST["sss_loan"];
-                $pagibig_loan = $_POST["pagibig_loan"];
-                $fs_deposit = $_POST["fs_deposit"];
-                $fs_loan = $_POST["fs_loan"];
-                $salary_loan = $_POST["salary_loan"];
-                $other_loans = $_POST["other_loans"];
-                $qualified_dependents = $_POST["qualified_dependents"];
-                $basic_income_cutoff = $basic_rate_hour * $basic_num_hours_cutoff;
-                $hono_income_cutoff = $hono_rate_hour * $hono_num_hours_cutoff;
-                $other_income_cutoff = $other_rate_hour * $other_num_hours_cutoff;
-                $gross_income = $basic_income_cutoff + $hono_income_cutoff + $other_income_cutoff;
-
-                //sss contribution
-                $sss_contri = 180;
-                for ($i = 0; $i < 52; $i++) {
-                    if ($gross_income >= 4250 + $i * 500 && $gross_income <= 4749.99 + $i * 500) {
-                        $sss_contri = 202.50 + $i * 22.50;
-                        break;
-                    } else if ($gross_income >= 29750) {
-                        $sss_contri = 1350;
-                    }
-                }
-                //philhealth contribution based from the given PhilHealth Table
-                if ($gross_income <= 10000.00 && $gross_income >= 0) {
-                    $philH_contri = 450.00;
-                } else if ($gross_income >= 10000.01 && $gross_income <= 89999.99) {
-                    $philH_contri = $gross_income * 0.045;
-                } else {
-                    $philH_contri = 4050.00;
-                }
-
-                //tax computation
-                //example ( net income - from the table data) * .25 + tax from table base from net income range
-                if ($gross_income <= 0 && $gross_income <= 10417) {
-                    $tax_contri = $gross_income * 0;
-                } else if ($gross_income > 10417 && $gross_income <= 16666) {
-                    $tax_contri = $gross_income * 0.20;
-                } else if ($gross_income >= 16667 && $gross_income <= 33332) {
-                    $tax_contri = $gross_income * 0.25;
-                } else if ($gross_income >= 33333 && $gross_income <= 83332) {
-                    $tax_contri = $gross_income * 0.30;
-                } else if ($gross_income >= 83333 && $gross_income <= 333332) {
-                    $tax_contri = $gross_income * 0.32;
-                } else if ($gross_income >= 333333) {
-                    $tax_contri = $gross_income * 0.32;
-                }
-                //$tax_contri=100;
-        
-                // to press Calculate Net Income button
-            } else if (isset($_POST["calculate_net_income"])) {
-                $basic_rate_hour = $_POST["basic_rate_hour"];
-                $basic_num_hours_cutoff = $_POST["basic_num_hours_cutoff"];
-                $hono_rate_hour = $_POST["hono_rate_hour"];
-                $hono_num_hours_cutoff = $_POST["hono_num_hours_cutoff"];
-                $other_rate_hour = $_POST["other_rate_hour"];
-                $other_num_hours_cutoff = $_POST["other_num_hours_cutoff"];
-                $sss_loan = $_POST["sss_loan"];
-                $pagibig_loan = $_POST["pagibig_loan"];
-                $fs_deposit = $_POST["fs_deposit"];
-                $fs_loan = $_POST["fs_loan"];
-                $salary_loan = $_POST["salary_loan"];
-                $other_loans = $_POST["other_loans"];
-                $qualified_dependents = $_POST["qualified_dependents"];
-
-                $basic_income_cutoff = $basic_rate_hour * $basic_num_hours_cutoff;
-                $hono_income_cutoff = $hono_rate_hour * $hono_num_hours_cutoff;
-                $other_income_cutoff = $other_rate_hour * $other_num_hours_cutoff;
-                $gross_income = $basic_income_cutoff + $hono_income_cutoff + $other_income_cutoff;
-
-                //sss contribution
-                $sss_contri = 180;
-                for ($j = 0; $j < 52; $j++) {
-                    if ($gross_income >= 4250 + $j * 500 && $gross_income <= 4749.99 + $j * 500) {
-                        $sss_contri = 202.50 + $j * 22.50;
-                    } else if ($gross_income >= 29750) {
-                        $sss_contri = 1350;
-                    }
-                }
-
-                //philhealth contribution based from the given PhilHealth Table
-                if ($gross_income <= 10000.00 && $gross_income >= 0) {
-                    $philH_contri = 450.00;
-                } else if ($gross_income >= 10000.01 && $gross_income <= 89999.99) {
-                    $philH_contri = $gross_income * 0.045;
-                } else {
-                    $philH_contri = 4050.00;
-                }
-
-                //tax computation
-                //example ( net income - from the table data) * .25 + tax from table base from net income range
-        
-                if ($gross_income <= 0 && $gross_income <= 10417) {
-                    $tax_contri = $gross_income * 0;
-                } else if ($gross_income > 10417 && $gross_income <= 16666) {
-                    $tax_contri = $gross_income * 0.20;
-                } else if ($gross_income >= 16667 && $gross_income <= 33332) {
-                    $tax_contri = $gross_income * 0.25;
-                } else if ($gross_income >= 33333 && $gross_income <= 83332) {
-                    $tax_contri = $gross_income * 0.30;
-                } else if ($gross_income >= 83333 && $gross_income <= 333332) {
-                    $tax_contri = $gross_income * 0.32;
-                } else if ($gross_income >= 333333) {
-                    $tax_contri = $gross_income * 0.32;
-                }
-                //$tax_contri=100;
-        
-                $total_deduct = $sss_contri + $philH_contri + $pagibig_contri + $tax_contri + $sss_loan + $pagibig_loan + $fs_deposit + $fs_loan + $salary_loan + $other_loans;
-                $net_income = $gross_income - $total_deduct;
-
-                // to press NEW button
-            } else if (isset($_POST["new"])) {
-                empty_inputbox();
-                // $employee_no="";
-                //$department="";
-                // $firstname="";
-                // $mname="";
-                // $surname="";
-                //$civil_status="";
-                //$designation="";
-                // $qualified_dependents="";
-                // $paydate="";
-                // $emp_status="";
-        
-                //decleration of variables where inputs are stored
-                // $basic_rate_hour="";
-                // $basic_num_hours_cutoff="";
-                // $hono_rate_hour="";
-                // $hono_num_hours_cutoff="";
-                // $other_rate_hour="";
-                // $other_num_hours_cutoff="";
-                // $sss_contri=0.00;
-                // $philH_contri=0.00;
-                // $pagibig_contri=100.00;
-                // $tax_contri=0.00;
-                // $sss_loan="";
-                // $pagibig_loan="";
-                // $fs_deposit="";
-                // $fs_loan="";
-                // $salary_loan="";
-                // $other_loans="";
-        
-                // to press Print Preview Payslip button
-            } else if (isset($_POST["print_preview"])) {
-                echo "PRINT PREVIEW";
-
-                // to press Print Payslip button
-            } else if (isset($_POST["print_payslip"])) {
-                echo "PRINT PAYSLIP";
-
-                // to press Cancel button
-            } else if (isset($_POST["cancel"])) {
-                empty_inputbox();
-
-                // to press Close button
-            } else if (isset($_POST["close"])) {
-                echo "CLOSE";
-            }
-        }
-        ?>
-
         <div class="container">
             <div class="page_border">
                 <h1 class="text-center" style="padding-top:10px; padding-bottom:10px; fontweight:bold;">Joel's Store
@@ -328,7 +88,7 @@ ini_set("display_errors", "On");
                             <div>
                                 <span style="margin-top:20px;">Employee Number:</span>
                                 <input type="text" class="formcontrol input_box1" style="margintop:20px;"
-                                    id="employee_no" name="employee_no" value="<?php echo $employee_no; ?>" disabled>
+                                    id="employee_no" name="employee_no" value="<?php echo $employee_no; ?>">
                             </div>
                             <div>
 
@@ -542,10 +302,14 @@ ini_set("display_errors", "On");
                                             style="padding:5px; margin-bottom:5px; width:100px;">NEW</button>
                                         <button type="submit" name="save" id="save" class="btn btn-info"
                                             style="padding:5px;">SAVE</button>
-                                        <button type="submit" name="print_payslip" class="btn btn-info"
-                                            style="padding:5px; width:117px;">PRINT PAYSLIP</button>
+                                        <button type="submit" name='<?php echo !isset($isNew) ? "update" : "save"; ?>'
+                                            id='<?php echo !isset($isNew) ? "update" : "save"; ?>'
+                                            class="btn btn-success  w-100 "
+                                            style="white-space: nowrap; font-size:0.9rem;">
+                                            <?php echo !isset($isNew) ? "Update" : "Save"; ?>
+                                        </button>
                                         <button type="submit" name="cancel" class="btn btn-danger"
-                                            style="padding:5px; width:100px;">CANCEL</button>
+                                            style="padding:5px; width:100px;">DELETE</button>
                                         <button type="submit" name="close" class="btn btn-dark"
                                             style="padding:5px; width:100px;">CLOSE</button>
                                     </div>
@@ -557,5 +321,13 @@ ini_set("display_errors", "On");
             </div>
         </div>
 </body>
+<script>
+    $(document).ready(function () {
+        $(".clickable").click(function () {
+            let id = document.getElementById("employee_no").value
+            window.location = "payroll_lab4.php?search=" + id
+        })
+    })
+</script>
 
 </html>

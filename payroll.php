@@ -1,3 +1,9 @@
+<?php
+include 'process/payroll.php';
+include 'process/earl_payroll_fill.php';
+include 'process/session_check.php';
+
+?>
 <!DOCTYPE html>
 <html>
 <head>

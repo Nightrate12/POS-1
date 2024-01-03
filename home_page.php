@@ -8,7 +8,7 @@
     <style>
         /* General Styles */
         body {
-            font-family: Arial, sans-serif;
+                font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;

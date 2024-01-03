@@ -1,3 +1,21 @@
+<?php
+include 'process/db_connection.php';
+
+$conn = OpenCon();
+$sql = "SELECT * FROM incometbl JOIN personal_infotbl ON incometbl.employee_no = personal_infotbl.employee_no JOIN deductiontbl ON incometbl.employee_no = deductiontbl.employee_no;";
+$result = $conn->query($sql);
+
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    $item_name = $_POST['search'];
+    if (!$item_name) {
+        $sql = "SELECT * FROM incometbl JOIN personal_infotbl ON incometbl.employee_no = personal_infotbl.employee_no JOIN deductiontbl ON incometbl.employee_no = deductiontbl.employee_no;";
+        $result = $conn->query($sql);
+    } else {
+        $sql = "SELECT * FROM incometbl JOIN personal_infotbl ON incometbl.employee_no = personal_infotbl.employee_no JOIN deductiontbl ON incometbl.employee_no = deductiontbl.employee_no WHERE personal_infotbl.employee_no = $item_name;";
+        $result = $conn->query($sql);
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,6 +29,7 @@
 
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
     <!-- Popper JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -18,7 +37,6 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="js/payroll_listview.js"></script>
-    <script src="admin_page.js"></script>
     <style>
         table tr:hover {
             cursor: pointer;
@@ -106,12 +124,34 @@
                 </thead>
                 <tbody>
                     <?php
-                    include 'process/payroll_listview.php';
+                    if ($result) {
+                        while ($item = $result->fetch_assoc()) {
+                            echo "
+                    <tr class='clickable-row border' style='cursor: pointer' data-href='payroll_lab4.php?id={$item['employee_no']}'>
+                        <td class='py-6 ps-6 border'>$item[employee_no]</td>
+                        <td class='py-6 ps-6 border'>$item[fname] $item[mname] $item[lname]</td>
+                        <td class='py-6 ps-6 border'>$item[basic_income]</td>
+                        <td class='py-6 ps-6 border'>$item[hono_income]</td>
+                        <td class='py-6 ps-6 border'>$item[other_income]</td>
+                        <td class='py-6 ps-6 border'>$item[gross_income]</td>
+                        <td class='py-6 ps-6 border'>$item[total_deduction]</td>
+                        <td class='py-6 ps-6 border'>$item[net_income]</td>
+                        <td class='py-6 ps-6 border'>$item[income_date]</td>
+                    </tr>
+                    ";
+                        }
+                    }
                     ?>
                 </tbody>
             </table>
     </div>
     </form>
 </body>
-
+<script>
+    $(document).ready(function() {
+        $(".clickable-row").click(function() {
+            window.location = $(this).data("href")
+        })
+    })
+</script>
 </html>
