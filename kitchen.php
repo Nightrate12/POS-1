@@ -246,25 +246,25 @@ include 'process/pos_fill.php';
                                 <ul class="list-group list-group-horizontal gap-5">
                                     <li class="" style="list-style-type: none;">
                                         <input class="form-check-input" type="radio" name="flexRadioDefault" id="senior"
-                                            onclick="handleDiscounts(0.12)" value="senior discount">
+                                            onclick="handleDiscounts(0.12)" value="Senior Citizen">
                                         <label class="form-check-label" for="flexRadioDefault1">Senior Citizen
                                             (12%)</label>
                                     </li>
                                     <li class="" style="list-style-type: none;"> <input class="form-check-input"
                                             type="radio" name="flexRadioDefault" id="discountCard"
-                                            onclick="handleDiscounts(0.08)" value="discount card">
+                                            onclick="handleDiscounts(0.08)" value="Discount Card">
                                         <label class="form-check-label" for="flexRadioDefault1">With Disc. Card
                                             (8%)</label>
                                     </li>
                                     <li class="" style="list-style-type: none;"> <input class="form-check-input"
                                             type="radio" name="flexRadioDefault" id="employee"
-                                            onclick="handleDiscounts(0.1)" value="employee discount">
+                                            onclick="handleDiscounts(0.1)" value="Employee Discount">
                                         <label class="form-check-label" for="flexRadioDefault1">Employee Discount
                                             (10%)</label>
                                     </li>
                                     <li class="" style="list-style-type: none;"> <input class="form-check-input"
                                             type="radio" name="flexRadioDefault" id="noDiscount"
-                                            onclick="handleDiscounts(0)" value="no discount">
+                                            onclick="handleDiscounts(0)" value="No discount">
                                         <label class="form-check-label" for="flexRadioDefault1">No Discount</label>
                                     </li>
                                 </ul>
