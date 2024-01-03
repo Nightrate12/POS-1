@@ -1,93 +1,66 @@
 <?php
-// Include any necessary validation and processing logic here
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Validate and process form data
-    // Replace this with your validation and processing code
+include 'process/db_connection.php';
+//include 'process/session_check.php';
+
+$conn = OpenCon();
+$sql = "SELECT * FROM user_accounttbl JOIN personal_infotbl ON user_accounttbl.employee_no = personal_infotbl.employee_no WHERE user_accounttbl.username = '' OR user_accounttbl.password = '' OR user_accounttbl.confirm_password = ''";
+$result = $conn->query($sql);
+
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    $item_name = $_POST['search'];
+    if (!$item_name) {
+        $sql = "SELECT * FROM user_accounttbl JOIN personal_infotbl ON user_accounttbl.employee_no = personal_infotbl.employee_no;";
+        $result = $conn->query($sql);
+    } else {
+        $sql = "SELECT * FROM user_accounttbl JOIN personal_infotbl ON user_accounttbl.employee_no = personal_infotbl.employee_no WHERE user_accounttbl.employee_no = $item_name;";
+        $result = $conn->query($sql);
+    }
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Account Information</title>
+    <title>POS Report</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+
+
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            background-image: url('IMAGES/employeebackground.jpg');
-            background-size: cover; 
-            background-repeat: no-repeat; 
-            background-attachment: fixed; 
+        table tr:hover {
+            cursor: pointer;
         }
 
-        .container {
-            width: 700px;
-            margin: 0 auto;
-            margin-top: 50px;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        table thead {
+            background: maroon;
         }
 
-        h2 {
-            text-align: center;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        input[type="text"],
-        input[type="password"],
-        select {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        input[type="submit"] {
-            background-color: #007bff; /* Blue */
+        table thead tr th {
             color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
         }
 
-        .buttons {
-            text-align: center;
-            margin-top: 20px;
+        body {
+            background-image: url('IMAGES/employeebackground.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
         }
 
-        .buttons button {
-            margin-right: 10px;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        .update-button{
-            background-color: #4169e1;
-            color: #ffffff;
+        .sidebar a:hover {
+            color: #00ffff;
         }
 
-        .delete-button {
-            background-color: #ffc107; /* Yellow */
-            color: #000;
-        }
-
-        .cancel-button {
-            background-color: #fff;
-            color: #888;
-        }
+        /* Sidebar Styles */
         .sidebar {
             background-color: #333;
             color: #fff;
@@ -105,82 +78,75 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             padding: 10px 0;
             text-decoration: none;
         }
-        .sidebar a:hover {
-            color: #00ffff;
-        }
-
     </style>
 </head>
-<body>
-        <div class="sidebar">
-        <h2>Joel's Store</h2>
-        <ul>
-            <li><a href="home_page.php">Home</a></li>
-            <li><a href="employee_registration_save.php">Employee Registration</a></li>
-            <li><a href="employee_listview.php">Employee Report</a></li>
-            <li><a href="payroll_lab4.php">Payroll</a></li>
-            <li><a href="payroll_listview.php">Payroll Report</a></li>
-            <li><a href="perfume.php">POS</a></li>
-            <li><a href="pos_listview.php">POS Sales Report</a></li>
-            <li><a href="user_account_page.php">User Account</a></li>
-            <li><a href="login.php">Logout</a></li>
+<div class="sidebar">
+    <h2>Joel's Store</h2>
+    <ul>
+        <li><a href="home_page.php">Home</a></li>
+        <li><a href="employee_registration_save.php">Employee Registration</a></li>
+        <li><a href="employee_listview.php">Employee Report</a></li>
+        <li><a href="payroll_lab4.php">Payroll</a></li>
+        <li><a href="payroll_listview.php">Payroll Report</a></li>
+        <li><a href="perfume.php">POS</a></li>
+        <li><a href="pos_listview">POS Sales Report</a></li>
+        <li><a href="user_account_page.php">User Account</a></li>
+        <li><a href="login.php">Logout</a></li>
 
-        </ul>
-    </div>
-    <div class="container">
-        <h2>User Account Information</h2>
-        <div class="top-right">
-            <img src="IMAGES/Null.jpg" alt="Profile Image" width="100px">
-    </div>
-        <form action="user_account.php" method="POST">
-            <label for="firstname">First Name:</label>
-            <input type="text" id="firstname" name="firstname" required>
-
-            <label for="middlename">Middle Name:</label>
-            <input type="text" id="middlename" name="middlename">
-
-            <label for="lastname">Last Name:</label>
-            <input type="text" id="lastname" name="lastname" required>
-
-            <label for="suffix">Suffix:</label>
-            <input type="text" id="suffix" name="suffix">
-
-            <label for="department">Department:</label>
-            <input type="text" id="department" name="department" required>
-
-            <label for="designation">Designation:</label>
-            <input type="text" id="designation" name="designation" required>
-
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
-
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-
-            <label for="confirm_password">Confirm Password:</label>
-            <input type="password" id="confirm_password" name="confirm_password" required>
-
-            <label for="usertype">User Type:</label>
-            <select id="usertype" name="usertype" required>
-                <option value="admin">Admin</option>
-                <option value="user">User</option>
-            </select>
-
-            <label for="user_status">User Status:</label>
-            <select id="user_status" name="user_status" required>
-                <option value="active">Active</option>
-                <option value="inactive">Inactive</option>
-            </select>
-
-            <label for="employee_number">Employee Number:</label>
-            <input type="text" id="employee_number" name="employee_number" required>
-
-            <div class="buttons">
-                <button type="submit" class="update-button">Update</button>
-                <button type="submit" class="delete-button">Delete</button>
-                <button type="button" class="cancel-button" onclick="window.location.href='home_page.php'">Cancel</button>
-            </div>
+    </ul>
+</div>
+<!-- main content -->
+<div class="flex-grow-1 bg-white">
+    <div class="container bg-white">
+        <h1 class="d-flex justify-content-center m-2" style="font-size:30px;">POS Report</h1>
+        <form action="" method="post" class="input-group mb-3 mt-3" style="height: 2rem; width:250px">
+            <input type="text" class="form-control" aria-describedby="button-addon2" placeholder="Search item name"
+                name='search'>
+            <button class="btn btn-outline-secondary" type="submit" id="search_button"> <svg
+                    xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 24 24"
+                    class="">
+                    <path
+                        d="M 9 2 C 5.1458514 2 2 5.1458514 2 9 C 2 12.854149 5.1458514 16 9 16 C 10.747998 16 12.345009 15.348024 13.574219 14.28125 L 14 14.707031 L 14 16 L 20 22 L 22 20 L 16 14 L 14.707031 14 L 14.28125 13.574219 C 15.348024 12.345009 16 10.747998 16 9 C 16 5.1458514 12.854149 2 9 2 z M 9 4 C 11.773268 4 14 6.2267316 14 9 C 14 11.773268 11.773268 14 9 14 C 6.2267316 14 4 11.773268 4 9 C 4 6.2267316 6.2267316 4 9 4 z">
+                    </path>
+                </svg></button>
         </form>
+        <table class="table table-bordered table-hover" id="user_table">
+            <thead>
+                <tr>
+                <th class="py-6 ps-6 border bg-dark"><span class="btn p-0 d-flex align-items-center fw-bold pe-none text-white">Employee Number</span></th>
+                                    <th class="py-6 ps-6 border bg-dark"><span class="btn p-0 d-flex align-items-center fw-bold pe-none text-white">Name</span></th>
+                                    <th class="py-6 ps-6 border bg-dark"><span class="btn p-0 d-flex align-items-center fw-bold pe-none text-white">Username</span></th>
+                                    <th class="py-6 ps-6 border bg-dark"><span class="btn p-0 d-flex align-items-center fw-bold pe-none text-white">User level</span></th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php
+                                if ($result) {
+                                    while ($item = $result->fetch_assoc()) {
+                                        echo "
+                                <tr class='clickable-row border' style='cursor: pointer' data-href='user_account.php?id={$item['employee_no']}'>
+                                    <td class='py-6 ps-6 border'>$item[employee_no]</td>
+                                    <td class='py-6 ps-6 border'>$item[fname] $item[mname] $item[lname]</td>
+                                    <td class='py-6 ps-6 border'>$item[username]</td>
+                                    <td class='py-6 ps-6 border'>$item[privilege]</td>
+                                </tr>
+                                ";
+                                    }
+                                }
+                                ?>
+            </tbody>
+        </table>
     </div>
+</div>
+</div>
+
 </body>
+<script>
+    $(document).ready(function () {
+        $(".clickable-row").click(function () {
+            window.location = $(this).data("href")
+        })
+    })
+</script>
+
 </html>

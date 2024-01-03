@@ -1,3 +1,17 @@
+<?php
+include 'process/db_connection.php';
+include 'process/session_check.php';
+
+$conn = OpenCon();
+$sql = "SELECT * FROM `salestbl` ORDER BY id DESC LIMIT 5;";
+$result = $conn->query($sql);
+
+$sql2 = "SELECT id FROM `personal_infotbl`;";
+$result2 = mysqli_fetch_all($conn->query($sql2));
+
+$sql3 = "SELECT COUNT(privilege) AS privilege_count FROM user_accounttbl WHERE privilege != 0 GROUP BY privilege WITH ROLLUP;";
+$result3 = mysqli_fetch_all($conn->query($sql3));
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +22,7 @@
     <style>
         /* General Styles */
         body {
-                font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
@@ -64,16 +78,28 @@
 <body>
     <div class="sidebar">
         <h2>Joel's Store</h2>
-        <ul>
-            <li><a href="home_page.php">Home</a></li>
-            <li><a href="employee_registration_save.php">Employee Registration</a></li>
-            <li><a href="employee_listview.php">Employee Report</a></li>
-            <li><a href="payroll_lab4.php">Payroll</a></li>
-            <li><a href="payroll_listview.php">Payroll Report</a></li>
-            <li><a href="perfume.php">POS</a></li>
-            <li><a href="pos_listview.php">POS Sales Report</a></li>
-            <li><a href="user_account_page.php">User Account</a></li>
-            <li><a href="login.php">Logout</a></li>
+        <ul style="list-style-type:none; list-style-image: none;">
+                <li><a href="home_page.php">Home</a></li>
+                <li><a href="employee_registration_save.php"
+                        class="<?php echo $user_privilege == 1 ? '' : 'd-none' ?>">Employee Registration</a></li>
+                <li><a href="employee_listview.php" class="<?php echo $user_privilege == 1 ? '' : 'd-none' ?>">Employee
+                        Report</a></li>
+                <li><a href="payroll_lab4.php"
+                        class="<?php echo ($user_privilege == 1 || $user_privilege == 2) ? '' : 'd-none' ?>">Payroll</a>
+                </li>
+                <li><a href="payroll_listview.php"
+                        class="<?php echo ($user_privilege == 1 || $user_privilege == 2) ? '' : 'd-none' ?>">Payroll
+                        Report</a></li>
+                <li><a href="perfume.php"
+                        class="<?php echo ($user_privilege == 1 || $user_privilege == 3) ? '' : 'd-none' ?>">POS</a>
+                </li>
+                <li><a href="pos_listview.php"
+                        class="<?php echo ($user_privilege == 1 || $user_privilege == 3) ? '' : 'd-none' ?>">POS Sales
+                        Report</a></li>
+                <li><a href="user_account_page.php" class="<?php echo ($user_privilege == 1) ? '' : 'd-none' ?>">User
+                        Account</a></li>
+                <li><a href="login.php">Logout</a></li>
+            </ul>
 
         </ul>
     </div>

@@ -1,6 +1,6 @@
 <?php
 include 'process/emp_fill.php';
-//include 'process/session_check.php';
+include 'process/session_check.php';
 
 ?>
 <!DOCTYPE html>
@@ -60,16 +60,28 @@ include 'process/emp_fill.php';
 <div class="row flex">
         <div class="sidebar">
             <h2>Joel's Store</h2>
-            <ul>
+            <ul style="list-style-type:none; list-style-image: none;">
                 <li><a href="home_page.php">Home</a></li>
-                <li><a href="employee_registration_save.php">Employee Registration</a></li>
-                <li><a href="employee_listview.php">Employee Report</a></li>
-                <li><a href="payroll_lab4.php">Payroll</a></li>
-                <li><a href="payroll_listview.php">Payroll Report</a></li>
-                <li><a href="perfume.php">POS</a></li>
-                <li><a href="pos_listview.php">POS Sales Report</a></li>
-                <li><a href="user_account_page.php">User Account</a></li>
+                <li><a href="employee_registration_save.php"
+                        class="<?php echo $user_privilege == 1 ? '' : 'd-none' ?>">Employee Registration</a></li>
+                <li><a href="employee_listview.php" class="<?php echo $user_privilege == 1 ? '' : 'd-none' ?>">Employee
+                        Report</a></li>
+                <li><a href="payroll_lab4.php"
+                        class="<?php echo ($user_privilege == 1 || $user_privilege == 2) ? '' : 'd-none' ?>">Payroll</a>
+                </li>
+                <li><a href="payroll_listview.php"
+                        class="<?php echo ($user_privilege == 1 || $user_privilege == 2) ? '' : 'd-none' ?>">Payroll
+                        Report</a></li>
+                <li><a href="perfume.php"
+                        class="<?php echo ($user_privilege == 1 || $user_privilege == 3) ? '' : 'd-none' ?>">POS</a>
+                </li>
+                <li><a href="pos_listview.php"
+                        class="<?php echo ($user_privilege == 1 || $user_privilege == 3) ? '' : 'd-none' ?>">POS Sales
+                        Report</a></li>
+                <li><a href="user_account_page.php" class="<?php echo ($user_privilege == 1) ? '' : 'd-none' ?>">User
+                        Account</a></li>
                 <li><a href="login.php">Logout</a></li>
+            </ul>
 
             </ul>
         </div>
@@ -727,6 +739,7 @@ include 'process/emp_fill.php';
         }
         ?>
                         <button type="reset" class="btn btn-outline-secondary" id="cancelbtn" name="cancelbtn" style="width:130px;">Cancel</button>
+                        
     </form>
     </div>
 </div>

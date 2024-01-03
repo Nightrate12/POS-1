@@ -61,7 +61,7 @@ $(document).ready(function () {
         var fieldValue = $(this).val();
         formData[fieldName] = fieldValue;
       });
-  
+  console.log(formData)
       $.ajax({
         type: "POST",
         url: "process/emp_info_update.php",
@@ -119,9 +119,8 @@ $(document).ready(function () {
           }
       })
   })
-});
-$("#cancelbtn").click(function (e) {
-  e.preventDefault();
-  window.location.href = "home_page.php";
-});
+  $("#cancelbtn").click(function (e) {
+    e.preventDefault();
+    window.location.href = "home_page.php";
+  });
 });

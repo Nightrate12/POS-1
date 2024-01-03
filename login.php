@@ -1,3 +1,45 @@
+
+<?php
+
+include 'process/db_connection.php';
+$conn = OpenCon();
+$sql = "SELECT * FROM user_accounttbl;";
+$result = $conn->query($sql);
+
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+	$user = $_POST['user'];
+	$pass = $_POST['password'];
+	$sql = "SELECT COUNT(*) AS count
+    FROM user_accounttbl
+    WHERE username = '$user' AND password = '$pass';
+    ";
+	$result = mysqli_fetch_assoc($conn->query($sql));
+
+	if ($result['count'] > 0 && $user != "" && $pass != "") {
+		$sql = "SELECT * FROM user_accounttbl WHERE username = '$user' AND password = '$pass';";
+		$result = mysqli_fetch_assoc($conn->query($sql));
+		session_start();
+		$_SESSION['privilege'] = $result['privilege'];
+		$_SESSION['username'] = $result['username'];
+		$_SESSION['employee_no'] = $result['employee_no'];
+		
+		if($_SESSION['privilege'] == 1){
+			header("Refresh:0; url=home_page.php");
+		}elseif($_SESSION['privilege'] == 2){
+			header("Refresh:0; url=payroll_lab4.php");
+		}elseif($_SESSION['privilege'] == 3){
+			header("Refresh:0; url=perfume.php");
+		}
+		
+		exit();
+	} else {
+		echo "<script>";
+		echo "alert('Invalid credentials!');";
+		echo "</script>";
+	}
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,25 +71,9 @@
     </div>
     <div class="login-container">
         <h2>Login</h2>
-        <?php
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $username = $_POST["username"];
-            $password = $_POST["password"];
-
-            // You can add your login logic here, e.g., checking the username and password against a database.
-            
-            // For this example, we'll just redirect to a welcome page on successful login.
-            if ($username === "admin" && $password === "admin") {
-                header("Location:home_page.php");
-                exit();
-            } else {
-                echo "Invalid username or password. Please try again.";
-            }
-        }
-        ?>
         <form action="" method="post">
             <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
+            <input type="text" id="user" name="user" required>
             
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>

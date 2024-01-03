@@ -1,6 +1,6 @@
 <?php
 include 'process/pos_fill.php';
-//include 'process/session_check.php';
+include 'process/session_check.php';
 
 ?>
 <!DOCTYPE html>
@@ -47,17 +47,28 @@ include 'process/pos_fill.php';
     <div class="row flex">
         <div class="sidebar">
             <h2>Joel's Store</h2>
-            <ul>
-                <li><a href="home_page.php">Home</a></li>
-                <li><a href="employee_registration_save.php">Employee Registration</a></li>
-                <li><a href="employee_listview.php">Employee Report</a></li>
-                <li><a href="payroll_lab4.php">Payroll</a></li>
-                <li><a href="payroll_listview.php">Payroll Report</a></li>
-                <li><a href="perfume.php">POS</a></li>
-                <li><a href="pos_listview.php">POS Sales Report</a></li>
-                <li><a href="user_account_page.php">User Account</a></li>
-                <li><a href="login.php">Logout</a></li>
 
+            <ul style="list-style-type:none; list-style-image: none;">
+                <li><a href="home_page.php">Home</a></li>
+                <li><a href="employee_registration_save.php"
+                        class="<?php echo $user_privilege == 1 ? '' : 'd-none' ?>">Employee Registration</a></li>
+                <li><a href="employee_listview.php" class="<?php echo $user_privilege == 1 ? '' : 'd-none' ?>">Employee
+                        Report</a></li>
+                <li><a href="payroll_lab4.php"
+                        class="<?php echo ($user_privilege == 1 || $user_privilege == 2) ? '' : 'd-none' ?>">Payroll</a>
+                </li>
+                <li><a href="payroll_listview.php"
+                        class="<?php echo ($user_privilege == 1 || $user_privilege == 2) ? '' : 'd-none' ?>">Payroll
+                        Report</a></li>
+                <li><a href="perfume.php"
+                        class="<?php echo ($user_privilege == 1 || $user_privilege == 3) ? '' : 'd-none' ?>">POS</a>
+                </li>
+                <li><a href="pos_listview.php"
+                        class="<?php echo ($user_privilege == 1 || $user_privilege == 3) ? '' : 'd-none' ?>">POS Sales
+                        Report</a></li>
+                <li><a href="user_account_page.php" class="<?php echo ($user_privilege == 1) ? '' : 'd-none' ?>">User
+                        Account</a></li>
+                <li><a href="login.php">Logout</a></li>
             </ul>
         </div>
         <div class="col-8  flex-grow-1"
@@ -118,11 +129,14 @@ include 'process/pos_fill.php';
                                 <li class="list-group-item border-0">
                                     <div class="row align-items-center">
                                         <div class="col-md-6" style="white-space:nowrap;">
-                                        <input type="text" class="form-control d-none" name='employee_no' value='<?php echo $user_employee_name ?>' aria-label="Amount (to the nearest dollar)" disabled id="employee_no">
+                                            <input type="text" class="form-control d-none" name='employee_no'
+                                                value='<?php echo $user_employee_name ?>'
+                                                aria-label="Amount (to the nearest dollar)" disabled id="employee_no">
                                             Name of an Item:
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="text" class="form-control" name='item_name' value='<?php echo $item_name ?>'
+                                            <input type="text" class="form-control" name='item_name'
+                                                value='<?php echo $item_name ?>'
                                                 aria-label="Amount (to the nearest dollar)" disabled id="ItemName">
                                         </div>
                                     </div>
@@ -133,7 +147,8 @@ include 'process/pos_fill.php';
                                             Quantity:
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="text" class="form-control" name='quantity' value='<?php echo $quantity ?>'
+                                            <input type="text" class="form-control" name='quantity'
+                                                value='<?php echo $quantity ?>'
                                                 aria-label="Amount (to the nearest dollar)" id="Quantity" min="1">
                                         </div>
                                     </div>
@@ -144,7 +159,8 @@ include 'process/pos_fill.php';
                                             Price:
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="text" class="form-control" name='Itemprice' value='<?php echo $Itemprice ?>'
+                                            <input type="text" class="form-control" name='Itemprice'
+                                                value='<?php echo $Itemprice ?>'
                                                 aria-label="Amount (to the nearest dollar)" disabled id="ItemPrice">
                                         </div>
                                     </div>
@@ -155,7 +171,8 @@ include 'process/pos_fill.php';
                                             Discount Amount:
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="text" class="form-control" name='discount_amount' value='<?php echo $discount_amount ?>'
+                                            <input type="text" class="form-control" name='discount_amount'
+                                                value='<?php echo $discount_amount ?>'
                                                 aria-label="Amount (to the nearest dollar)" disabled id="Discount">
                                         </div>
                                     </div>
@@ -166,7 +183,8 @@ include 'process/pos_fill.php';
                                             Discounted Amount:
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="text" class="form-control" name='discounted_amount' value='<?php echo $discounted_amount ?>'
+                                            <input type="text" class="form-control" name='discounted_amount'
+                                                value='<?php echo $discounted_amount ?>'
                                                 aria-label="Amount (to the nearest dollar)" disabled id="Discounted">
                                         </div>
                                     </div>
@@ -183,7 +201,8 @@ include 'process/pos_fill.php';
                                             Total Quantity:
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="text" class="form-control" name='total_quantity' value='<?php echo $total_quantity ?>'
+                                            <input type="text" class="form-control" name='total_quantity'
+                                                value='<?php echo $total_quantity ?>'
                                                 aria-label="Amount (to the nearest dollar)" disabled id="totalQuantity">
                                         </div>
                                     </div>
@@ -194,7 +213,8 @@ include 'process/pos_fill.php';
                                             Total Discount Given:
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="text" class="form-control" name='total_discount_given' value='<?php echo $total_discount_given ?>'
+                                            <input type="text" class="form-control" name='total_discount_given'
+                                                value='<?php echo $total_discount_given ?>'
                                                 aria-label="Amount (to the nearest dollar)" disabled id="totalDiscount">
                                         </div>
                                     </div>
@@ -205,7 +225,8 @@ include 'process/pos_fill.php';
                                             Total Discounted Amount:
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="text" class="form-control" name='total_discounted_amount' value='<?php echo $total_discounted_amount ?>'
+                                            <input type="text" class="form-control" name='total_discounted_amount'
+                                                value='<?php echo $total_discounted_amount ?>'
                                                 aria-label="Amount (to the nearest dollar)" disabled
                                                 id="totalDiscounted">
                                         </div>
@@ -217,7 +238,8 @@ include 'process/pos_fill.php';
                                             Cash Given:
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="text" class="form-control" name='cash_given' value='<?php echo $cash_given ?>'
+                                            <input type="text" class="form-control" name='cash_given'
+                                                value='<?php echo $cash_given ?>'
                                                 aria-label="Amount (to the nearest dollar)" id="Cash">
                                         </div>
                                     </div>
@@ -228,7 +250,8 @@ include 'process/pos_fill.php';
                                             Change:
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="text" class="form-control" name='customer_change' value='<?php echo $customer_change ?>'
+                                            <input type="text" class="form-control" name='customer_change'
+                                                value='<?php echo $customer_change ?>'
                                                 aria-label="Amount (to the nearest dollar)" disabled id="Change">
                                         </div>
                                     </div>
