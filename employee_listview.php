@@ -1,3 +1,22 @@
+<?php
+include 'process/db_connection.php';
+include 'process/session_check.php';
+
+$conn = OpenCon();
+$sql = "SELECT * FROM `personal_infotbl`;";
+$result = $conn->query($sql);
+
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    $item_name = $_POST['search'];
+    $sql = "SELECT * FROM `personal_infotbl` WHERE employee_no = '$item_name' OR id = '$item_name';";
+    $result = $conn->query($sql);
+    if (!$item_name) {
+        $sql = "SELECT * FROM `personal_infotbl`;";
+        $result = $conn->query($sql);
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -102,14 +121,35 @@
                     </tr>
                 </thead>
                 <tbody>
-                </tbody>
-                <?php
-                include 'process/employee_listview.php';
-                ?>
+                                <?php
+                                if ($result) {
+                                    while ($item = $result->fetch_assoc()) {
+                                        echo "
+                                <tr class='clickable-row' style='cursor: pointer' data-href='employee_registration_save.php?id={$item['id']}'>
+                                    <td class='py-6 ps-6 border'>$item[employee_no]</td>
+                                    <td class='py-6 ps-6 border'>$item[fname] $item[mname] $item[lname]</td>
+                                    <td class='py-6 ps-6 border'>$item[birth_date]</td>
+                                    <td class='py-6 ps-6 border'>$item[qualified_dependent_status]</td>
+                                    <td class='py-6 ps-6 border'>$item[civil_status]</td>
+                                    <td class='py-6 ps-6 border'>$item[department]</td>
+                                    <td class='py-6 ps-6 border'>$item[designation]</td>
+                                    <td class='py-6 ps-6 border'>$item[employee_status]</td>
+                                </tr>
+                                ";
+                                    }
+                                }
+                                ?>
+                            </tbody>
             </table>
     </div>
     </form>
     </div>
 </body>
-
+<script>
+    $(document).ready(function() {
+        $(".clickable-row").click(function() {
+            window.location = $(this).data("href")
+        })
+    })
+</script>
 </html>

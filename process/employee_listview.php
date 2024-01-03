@@ -14,16 +14,16 @@ if($result){
         while ($row= $result->fetch_assoc()){
             //while($row = mysqli_fetch_array($sql)){
 ?>
-<tr row_id = <?php echo $row['id']; ?>>
-<td><?php echo $row ['employee_no']; ?></td>
-<td><?php echo $row['fname']. " " . $row['mname']. ' ' . $row['lname'] . ' ' . $row['suffix']; ?></td>
-<td><?php echo $row['birth_date']; ?></td>
-<td><?php echo $row['qualified_dependent_status']; ?></td>
-<td><?php echo $row['civil_status']; ?></td>
-<td><?php echo $row['department']; ?></td>
-<td><?php echo $row['designation']; ?></td>
-<td><?php echo $row['employee_status']; ?></td>
-            </tr>
+                                <tr class='clickable-row' style='cursor: pointer' data-href='employee_registration_save.php?id={$item['id']}'>
+                                    <td class='py-6 ps-6 border'>$item[employee_no]</td>
+                                    <td class='py-6 ps-6 border'>$item[fname] $item[mname] $item[lname]</td>
+                                    <td class='py-6 ps-6 border'>$item[birth_date]</td>
+                                    <td class='py-6 ps-6 border'>$item[qualified_dependent_status]</td>
+                                    <td class='py-6 ps-6 border'>$item[civil_status]</td>
+                                    <td class='py-6 ps-6 border'>$item[department]</td>
+                                    <td class='py-6 ps-6 border'>$item[designation]</td>
+                                    <td class='py-6 ps-6 border'>$item[employee_status]</td>
+                                </tr>
             <?php
         }
     }
