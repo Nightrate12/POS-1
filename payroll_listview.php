@@ -1,6 +1,6 @@
 <?php
 include 'process/db_connection.php';
-
+//include 'process/session_check.php';
 $conn = OpenCon();
 $sql = "SELECT * FROM incometbl JOIN personal_infotbl ON incometbl.employee_no = personal_infotbl.employee_no JOIN deductiontbl ON incometbl.employee_no = deductiontbl.employee_no;";
 $result = $conn->query($sql);

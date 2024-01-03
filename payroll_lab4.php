@@ -294,29 +294,46 @@ include 'process/payroll_fill.php';
                                 </div>
                                 <div>
                                     <div>
-                                        <button type="submit" name="calculate_gross_income" class="btn btn-primary"
-                                            style="padding:5px; margin-bottom:5px;">CALCULATE GROSS INCOME</button>
-                                        <button type="submit" name="calculate_net_income" class="btn btn-primary"
-                                            style="padding:5px; margin-bottom:5px;">CALCULATE NET INCOME</button>
-                                        <button type="submit" name="new" class="btn btn-warning"
-                                            style="padding:5px; margin-bottom:5px; width:100px;">NEW</button>
-                                        <button type="submit" name="save" id="save" class="btn btn-info"
-                                            style="padding:5px;">SAVE</button>
-                                        <button type="submit" name='<?php echo !isset($isNew) ? "update" : "save"; ?>'
-                                            id='<?php echo !isset($isNew) ? "update" : "save"; ?>'
-                                            class="btn btn-success  w-100 "
-                                            style="white-space: nowrap; font-size:0.9rem;">
-                                            <?php echo !isset($isNew) ? "Update" : "Save"; ?>
-                                        </button>
-                                        <button type="submit" name="cancel" class="btn btn-danger"
-                                            style="padding:5px; width:100px;">DELETE</button>
-                                        <button type="submit" name="close" class="btn btn-dark"
-                                            style="padding:5px; width:100px;">CLOSE</button>
+                                        <div class="row row-cols-3 align-items-center gap-2 mt-3 g-0 pe-4">
+                                            <div class="col-4">
+                                                <button type="submit" name="calculate_gross_income"
+                                                    class="btn btn-primary w-103"
+                                                    style="white-space: nowrap; font-size:0.9rem;">Calculate Gross
+                                                    Income</button>
+                                            </div>
+                                            <div class="col-4">
+                                                <button type="submit" name="calculate_net_income"
+                                                    class="btn btn-primary  w-100"
+                                                    style="white-space: nowrap; font-size:0.9rem;">Calculate Net
+                                                    Income</button>
+                                            </div>
+                                            <div class="col-3">
+                                                <button type="submit" name="new" class="btn btn-warning w-100"
+                                                    style="white-space: nowrap; font-size:0.9rem;">New</button>
+                                            </div>
+
+                                            <div class="col-4">
+                                                <button type="submit"
+                                                    name='<?php echo !isset($isNew) ? "update" : "save"; ?>'
+                                                    id='<?php echo !isset($isNew) ? "update" : "save"; ?>'
+                                                    class="btn btn-success  w-100 "
+                                                    style="white-space: nowrap; font-size:0.9rem;">
+                                                    <?php echo !isset($isNew) ? "Update" : "Save"; ?>
+                                                </button>
+                                            </div>
+                                            <div class="col-4">
+                                                <button type="submit" name="delete" id='delete'
+                                                    class="btn btn-danger  w-100"
+                                                    style="white-space: nowrap; font-size:0.9rem;">Delete</button>
+                                            </div>
+                                            <div class="col-3">
+                                                <button type="submit" name="close" class="btn btn-dark w-100"
+                                                    style="white-space: nowrap; font-size:0.9rem; width:90%;">Close</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
                 </form>
             </div>
         </div>
