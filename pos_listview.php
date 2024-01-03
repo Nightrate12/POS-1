@@ -1,5 +1,6 @@
 <?php
 include 'process/db_connection.php';
+//include 'process/session_check.php';
 $conn = OpenCon();
 $sql = "SELECT * FROM `salestbl`;";
 
@@ -29,7 +30,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>
-        <style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+
+
+    <style>
         table tr:hover {
             cursor: pointer;
         }
@@ -43,12 +50,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         }
 
         body {
-        background-image: url('IMAGES/employeebackground.jpg');
-        background-size: cover; 
-        background-repeat: no-repeat; 
-        background-attachment: fixed; 
-    }
-    .sidebar a:hover {
+            background-image: url('IMAGES/employeebackground.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .sidebar a:hover {
             color: #00ffff;
         }
 
@@ -122,16 +130,16 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 if ($result) {
                     while ($item = $result->fetch_assoc()) {
                         echo "
-                                <tr>
-                                    <td>$item[item_name]</td>
-                                    <td>$item[quantity]</td>
-                                    <td>$item[price]</td>
-                                    <td>$item[discount_amount]</td>
-                                    <td>$item[discounted_amount]</td>
-                                    <td>$item[discount_option]</td>
-                                    <td>$item[cash_given]</td>
-                                    <td>$item[customer_change]</td>
-                                    <td>$item[id]</td>
+                                <tr class='clickable-row' style='cursor: pointer' data-href='{$item['item_type']}.php?id={$item['id']}'>
+                                    <td class='border'>$item[item_name]</td>
+                                    <td class='border'>$item[quantity]</td>
+                                    <td class='border'>$item[price]</td>
+                                    <td class='border'>$item[discount_amount]</td>
+                                    <td class='border'>$item[discounted_amount]</td>
+                                    <td class='border'>$item[discount_option]</td>
+                                    <td class='border'>$item[cash_given]</td>
+                                    <td class='border'>$item[customer_change]</td>
+                                    <td class='border'>$item[id]</td>
                                 </tr>
                                 ";
                     }
@@ -145,5 +153,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 </div>
 
 </body>
+<script>
+    $(document).ready(function () {
+        $(".clickable-row").click(function () {
+            window.location = $(this).data("href")
+        })
+    })
+</script>
 
 </html>

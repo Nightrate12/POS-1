@@ -1,3 +1,8 @@
+<?php
+include 'process/pos_fill.php';
+//include 'process/session_check.php';
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -117,7 +122,7 @@
                                             Name of an Item:
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="text" class="form-control"
+                                            <input type="text" class="form-control" name='item_name' value='<?php echo $item_name ?>'
                                                 aria-label="Amount (to the nearest dollar)" disabled id="ItemName">
                                         </div>
                                     </div>
@@ -128,7 +133,7 @@
                                             Quantity:
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="text" class="form-control"
+                                            <input type="text" class="form-control" name='quantity' value='<?php echo $quantity ?>'
                                                 aria-label="Amount (to the nearest dollar)" id="Quantity" min="1">
                                         </div>
                                     </div>
@@ -139,7 +144,7 @@
                                             Price:
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="text" class="form-control"
+                                            <input type="text" class="form-control" name='Itemprice' value='<?php echo $Itemprice ?>'
                                                 aria-label="Amount (to the nearest dollar)" disabled id="ItemPrice">
                                         </div>
                                     </div>
@@ -150,7 +155,7 @@
                                             Discount Amount:
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="text" class="form-control"
+                                            <input type="text" class="form-control" name='discount_amount' value='<?php echo $discount_amount ?>'
                                                 aria-label="Amount (to the nearest dollar)" disabled id="Discount">
                                         </div>
                                     </div>
@@ -161,7 +166,7 @@
                                             Discounted Amount:
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="text" class="form-control"
+                                            <input type="text" class="form-control" name='discounted_amount' value='<?php echo $discounted_amount ?>'
                                                 aria-label="Amount (to the nearest dollar)" disabled id="Discounted">
                                         </div>
                                     </div>
@@ -178,7 +183,7 @@
                                             Total Quantity:
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="text" class="form-control"
+                                            <input type="text" class="form-control" name='total_quantity' value='<?php echo $total_quantity ?>'
                                                 aria-label="Amount (to the nearest dollar)" disabled id="totalQuantity">
                                         </div>
                                     </div>
@@ -189,7 +194,7 @@
                                             Total Discount Given:
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="text" class="form-control"
+                                            <input type="text" class="form-control" name='total_discount_given' value='<?php echo $total_discount_given ?>'
                                                 aria-label="Amount (to the nearest dollar)" disabled id="totalDiscount">
                                         </div>
                                     </div>
@@ -200,7 +205,7 @@
                                             Total Discounted Amount:
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="text" class="form-control"
+                                            <input type="text" class="form-control" name='total_discounted_amount' value='<?php echo $total_discounted_amount ?>'
                                                 aria-label="Amount (to the nearest dollar)" disabled
                                                 id="totalDiscounted">
                                         </div>
@@ -212,7 +217,7 @@
                                             Cash Given:
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="text" class="form-control"
+                                            <input type="text" class="form-control" name='cash_given' value='<?php echo $cash_given ?>'
                                                 aria-label="Amount (to the nearest dollar)" id="Cash">
                                         </div>
                                     </div>
@@ -223,7 +228,7 @@
                                             Change:
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="text" class="form-control"
+                                            <input type="text" class="form-control" name='customer_change' value='<?php echo $customer_change ?>'
                                                 aria-label="Amount (to the nearest dollar)" disabled id="Change">
                                         </div>
                                     </div>
@@ -240,24 +245,24 @@
                                 <ul class="list-group list-group-horizontal gap-5">
                                     <li class="" style="list-style-type: none;">
                                         <input class="form-check-input" type="radio" name="flexRadioDefault" id="senior"
-                                            onclick="handleDiscounts(0.12)" value="senior discount">
+                                            onclick="handleDiscounts(0.12)" value="Senior Citizen">
                                         <label class="form-check-label" for="flexRadioDefault1">Senior Citizen
                                             (12%)</label>
                                     </li>
                                     <li class="" style="list-style-type: none;"> <input class="form-check-input"
                                             type="radio" name="flexRadioDefault" id="discountCard"
-                                            onclick="handleDiscounts(0.08)" value="discount card">
+                                            onclick="handleDiscounts(0.08)" value="Discount Card">
                                         <label class="form-check-label" for="flexRadioDefault1">With Disc. Card
                                             (8%)</label>
                                     </li>
                                     <li class="" style="list-style-type: none;"> <input class="form-check-input"
                                             type="radio" name="flexRadioDefault" id="employee"
-                                            onclick="handleDiscounts(0.1)" value="employee discount">
+                                            onclick="handleDiscounts(0.1)" value="Employee Discount">
                                         <label class="form-check-label" for="flexRadioDefault1">Employee Discount
                                             (10%)</label>
                                     </li>
                                     <li class="" style="list-style-type: none;"> <input class="form-check-input"
-                                            type="radio" name="flexRadioDefault" id="noDiscount"
+                                            type="radio" name="flexRadioDefault" id="No discount"
                                             onclick="handleDiscounts(0)" value="no discount">
                                         <label class="form-check-label" for="flexRadioDefault1">No Discount</label>
                                     </li>

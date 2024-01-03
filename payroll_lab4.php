@@ -66,7 +66,7 @@ include 'process/payroll_fill.php';
                 <li><a href="payroll_lab4.php">Payroll</a></li>
                 <li><a href="payroll_listview.php">Payroll Report</a></li>
                 <li><a href="perfume.php">POS</a></li>
-                <li><a href="#">POS Sales Report</a></li>
+                <li><a href="pos_listview.php">POS Sales Report</a></li>
                 <li><a href="user_account_page.php">User Account</a></li>
                 <li><a href="login.php">Logout</a></li>
 
@@ -77,7 +77,7 @@ include 'process/payroll_fill.php';
                 <h1 class="text-center" style="padding-top:10px; padding-bottom:10px; fontweight:bold;">Joel's Store
                     Payroll Application</h1>
                 <h5 style="padding-top:10px; font-weight:bold;">EMPLOYEE BASIC INFO:</h5>
-                <form action="payroll_lab4.php" method="POST">
+                <form action="" method="POST">
                     <div class="payrol_form_group1">
                         <div style="float:left; width:50%;">
                             <div style="margin-left:100px; margin-top:10px;">
@@ -97,7 +97,7 @@ include 'process/payroll_fill.php';
                                     value="<?php echo $department; ?>" disabled>
                             </div>
                             <div>
-                                <button type="submit" name="cancel" class="btn btn-danger"
+                                <button type="button" name="cancel" class="btn btn-danger clickable " id="search"
                                     style="padding:5px; width:100px; margin-left:200px;">SEARCH&#128269</button>
                             </div>
                         </div>
@@ -322,9 +322,8 @@ include 'process/payroll_fill.php';
                                                 </button>
                                             </div>
                                             <div class="col-4">
-                                                <button type="submit" name="delete" id='delete'
-                                                    class="btn btn-danger  w-100"
-                                                    style="white-space: nowrap; font-size:0.9rem;">Delete</button>
+                                                <button type="submit" name="cancel" class="btn btn-danger" id='delete'
+                                                    style="padding:5px; width:100px;">DELETE</button>
                                             </div>
                                             <div class="col-3">
                                                 <button type="submit" name="close" class="btn btn-dark w-100"
