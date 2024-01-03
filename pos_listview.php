@@ -131,15 +131,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     while ($item = $result->fetch_assoc()) {
                         echo "
                                 <tr class='clickable-row' style='cursor: pointer' data-href='{$item['item_type']}.php?id={$item['id']}'>
-                                    <td class='border'>$item[item_name]</td>
-                                    <td class='border'>$item[quantity]</td>
-                                    <td class='border'>$item[price]</td>
-                                    <td class='border'>$item[discount_amount]</td>
-                                    <td class='border'>$item[discounted_amount]</td>
-                                    <td class='border'>$item[discount_option]</td>
-                                    <td class='border'>$item[cash_given]</td>
-                                    <td class='border'>$item[customer_change]</td>
-                                    <td class='border'>$item[id]</td>
+                                <td class='border'>$item[item_name]</td>
+                                <td class='border'>$item[quantity]</td>
+                                <td class='border'>$item[price]</td>
+                                <td class='border'>$item[discount_amount]</td>
+                                <td class='border'>$item[discounted_amount]</td>
+                                <td class='border'>$item[discount_option]</td>
+                                <td class='border'>$item[cash_given]</td>
+                                <td class='border'>$item[customer_change]</td>
+                                <td class='border'>$item[id]</td>
                                 </tr>
                                 ";
                     }

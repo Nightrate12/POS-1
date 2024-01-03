@@ -110,6 +110,7 @@ include 'process/pos_fill.php';
                     </div>
                     <!-- inputs -->
                     <div class="row">
+                        
                         <div class="col-6 d-flex">
                             <ul class="list-group">
                                 <li class="list-group-item border-0">
@@ -118,6 +119,7 @@ include 'process/pos_fill.php';
                                 <li class="list-group-item border-0">
                                     <div class="row align-items-center">
                                         <div class="col-md-6" style="white-space:nowrap;">
+                                        <input type="text" class="form-control d-none" name='employee_no' value='<?php echo $user_employee_name ?>' aria-label="Amount (to the nearest dollar)" disabled id="employee_no">
                                             Name of an Item:
                                         </div>
                                         <div class="col-md-6">
