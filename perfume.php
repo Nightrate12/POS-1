@@ -283,7 +283,7 @@ include 'process/pos_fill.php';
                                         <button type="button" id="save" class="btn btn-warning w-100">Save</button>
                                     </div>
                                     <div class="col">
-                                        <button type="button" class="btn btn-dark w-100">Update</button>
+                                        <button type="button" id='update' class="btn btn-dark w-100">Update</button>
                                     </div>
                                 </div>
                                 <div class="row row-cols-5">

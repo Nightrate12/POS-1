@@ -3,13 +3,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $fieldArray = [];
     foreach ($_POST as $key => $value) {
         $fieldArray[] = $value;
+        echo $key . " " . $value . "</br>";
     }
     //echo json_encode($fieldArray);
     include 'db_connection.php';
 
     $conn = OpenCon();
     $sql1 = "UPDATE salestbl SET 
-                  discount_option = '$fieldArray[0]',
+                employee_no = '$fieldArray[0]',
+                  discount_option = '$fieldArray[1]',
                   quantity = '$fieldArray[2]',
                   price = '$fieldArray[3]',
                   discount_amount = '$fieldArray[4]',
@@ -27,4 +29,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     echo json_encode([
         'ok' => 1,
     ]);
+    
 }
