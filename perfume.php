@@ -373,7 +373,7 @@ include 'process/pos_fill.php';
     <script src="js/New.js" defer></script>
     <script src="js/Discount.js" defer></script>
     <script src="js/Items.js" defer></script>
-    <script src="js/pos_save.js"></script>
+    <script src="js/pos_save.js" defer></script>
 </body>
 
 </html>

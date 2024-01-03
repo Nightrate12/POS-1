@@ -48,7 +48,55 @@ $(document).ready(function () {
         }
       },
     });
+
+  });
   
+    // Update Form
+    $("#update").click(function (e) {
+      e.preventDefault();
+  
+      var formData = {};
+      $(".form-control").each(function () {
+        var fieldName = $(this).attr("id");
+        var fieldValue = $(this).val();
+        formData[fieldName] = fieldValue;
+      });
+  
+      $.ajax({
+        type: "POST",
+        url: "process/emp_info_update.php",
+        data: formData,
+        dataType: "json",
+        success: function (result) {
+          if (result.ok) {
+            alert("Data successfully updated!");
+          }
+        },
+      });
+    });
+
+  $("#delete").click(function (e) {
+    e.preventDefault();
+
+    var formData = {};
+    $(".form-control").each(function () {
+      var fieldName = $(this).attr("id");
+      var fieldValue = $(this).val();
+      formData[fieldName] = fieldValue;
+    });
+
+    $.ajax({
+      type: "POST",
+      url: "process/emp_info_delete.php",
+      data: formData,
+      dataType: "json",
+      success: function (result) {
+        if (result.ok) {
+          alert("Data successfully deleted!");
+          window.location.href = "employee_report.php";
+        }
+      },
+    });
   });
   $("#uploadfile").change(function(e){
       var formData = new FormData($("#pic-upload")[0])
@@ -71,4 +119,9 @@ $(document).ready(function () {
           }
       })
   })
+});
+$("#cancelbtn").click(function (e) {
+  e.preventDefault();
+  window.location.href = "home_page.php";
+});
 });

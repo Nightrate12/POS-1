@@ -60,6 +60,7 @@ $(document).ready(function () {
       .filter((segment) => segment.trim() !== "");
     const lastSegment = segments[segments.length - 1];
 
+
     formData['item_type'] = lastSegment.replace('.php', '');; 
 
     console.log(formData);

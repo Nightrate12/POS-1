@@ -3,31 +3,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $fieldArray = [];
     foreach ($_POST as $key => $value) {
         $fieldArray[] = $value;
-        echo $key . " " . $value . "</br>";
     }
     //echo json_encode($fieldArray);
     include 'db_connection.php';
 
     $conn = OpenCon();
     $sql1 = "UPDATE salestbl SET 
-                employee_no = '$fieldArray[0]',
-                  discount_option = '$fieldArray[1]',
-                  quantity = '$fieldArray[2]',
-                  price = '$fieldArray[3]',
-                  discount_amount = '$fieldArray[4]',
-                  discounted_amount = '$fieldArray[5]',
-                  total_quantity = '$fieldArray[6]',
-                  total_discount_given = '$fieldArray[7]',
-                  total_discounted_amount = '$fieldArray[8]',
-                  cash_given = '$fieldArray[9]',
-                  customer_change = '$fieldArray[10]',
-                  employee_no = '$fieldArray[11]',
+                    discount_option='$fieldArray[0]',
+                      employee_no = '$fieldArray[1]',
+                      item_name='$fieldArray[2]',
+                  quantity = '$fieldArray[3]',
+                  price = '$fieldArray[4]',
+                  discount_amount = '$fieldArray[5]',
+                  discounted_amount = '$fieldArray[6]',
+                  total_quantity = '$fieldArray[7]',
+                  total_discount_given = '$fieldArray[8]',
+                  total_discounted_amount = '$fieldArray[9]',
+                  cash_given = '$fieldArray[10]',
+                  customer_change = '$fieldArray[11]',
                   item_type = '$fieldArray[12]'
-                  WHERE item_name = '$fieldArray[1]'";
+                  WHERE item_name = '$fieldArray[2]'";
     $conn->query($sql1);
     CloseCon($conn);
     echo json_encode([
         'ok' => 1,
     ]);
-    
+
 }
