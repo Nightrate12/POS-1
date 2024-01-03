@@ -17,26 +17,38 @@ $result3 = mysqli_fetch_all($conn->query($sql3));
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
+    <title>Payroll</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!--CSS STYLE -->
+    <link rel="stylesheet" href="css/payroll_style.css">
+    <script src='js/payroll_save.js'> </script>
     <style>
-        /* General Styles */
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
             background-image: url('IMAGES/homebackground.jpg');
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
         }
 
+        .sidebar a:hover {
+            color: #00ffff;
+        }
+
         /* Sidebar Styles */
         .sidebar {
             background-color: #333;
             color: #fff;
-            width: 230px;
+            width: 250px;
             padding: 20px;
             position: fixed;
             top: 0;
@@ -50,31 +62,12 @@ $result3 = mysqli_fetch_all($conn->query($sql3));
             padding: 10px 0;
             text-decoration: none;
         }
-
-        /* Content Styles */
         .content {
             margin-left: 260px;
             padding: 20px;
         }
-
-        /* Header Styles */
-        header {
-            background-color: #444;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-        }
-
-        h1 {
-            margin: 0;
-        }
-
-        .sidebar a:hover {
-            color: #00ffff;
-        }
     </style>
 </head>
-
 <body>
     <div class="sidebar">
         <h2>Joel's Store</h2>
@@ -104,7 +97,7 @@ $result3 = mysqli_fetch_all($conn->query($sql3));
         </ul>
     </div>
 
-    <div class="content">
+    <div class="content" style=margin-left:300px;>
         <header>
             <h1>Welcome to Joel's Store</h1>
         </header>
@@ -113,5 +106,114 @@ $result3 = mysqli_fetch_all($conn->query($sql3));
         <p>All the items you neeed is here</p>
     </div>
 </body>
+<script defer>
+    const chartOptions = {
+        maintainAspectRatio: false,
+        legend: {
+            display: true,
+        },
+        tooltips: {
+            enabled: false,
+        },
+        scales: {
+            xAxes: [{
+                gridLines: true,
+                scaleLabel: true,
+                ticks: {
+                    display: true,
+                },
+                gridLines: {
+                    display: true,
+                    color: "#d3dfed",
+                },
+            }, ],
+            yAxes: [{
+                gridLines: true,
+                scaleLabel: true,
+                ticks: {
+                    display: true,
+                    suggestedMin: 0,
+                    suggestedMax: 10,
+                },
+                gridLines: {
+                    display: true,
+                    color: "#d3dfed",
+                },
+            }, ],
+        },
+    };
+    const chartOptions2 = {
+        maintainAspectRatio: false,
+        legend: {
+            display: true,
+        },
+        tooltips: {
+            enabled: false,
+        },
+        scales: {
+            xAxes: [{
+                gridLines: false,
+                scaleLabel: false,
+                ticks: {
+                    display: false,
+                },
+                gridLines: {
+                    display: false,
+                    color: "#d3dfed",
+                },
+            }, ],
+            yAxes: [{
+                gridLines: false,
+                scaleLabel: true,
+                ticks: {
+                    display: false,
+                    suggestedMin: 0,
+                    suggestedMax: 10,
+                },
+                gridLines: {
+                    display: false,
+                    color: "#d3dfed",
+                },
+            }, ],
+        },
+    };
 
+    var result2 = <?php echo json_encode($result2); ?>;
+    console.log(result2)
+    var ctx = document.getElementById("chart1").getContext("2d");
+    var chart = new Chart(ctx, {
+        type: "line",
+        data: {
+            labels: result2.flat(),
+            datasets: [{
+                label: "Registered Users",
+                backgroundColor: "rgba(101, 116, 205, 0.1)",
+                borderColor: "rgba(101, 116, 205, 0.8)",
+                borderWidth: 2,
+                data: result2.flat(),
+            }, ],
+        },
+        options: chartOptions,
+    });
+
+    var result3 = <?php echo json_encode($result3); ?>;
+    console.log(result3);
+    var ctx = document.getElementById("chart2").getContext("2d");
+    var chart = new Chart(ctx, {
+        type: "doughnut",
+        data: {
+            labels: ["Administrator", "Cashier", "Accountant"],
+            datasets: [{
+                data: [result3['0'], result3['2'], result3['1']],
+                backgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(54, 162, 235)',
+                    'rgb(255, 205, 86)'
+                ],
+                hoverOffset: 4
+            }]
+        },
+        options: chartOptions2,
+    });
+</script>
 </html>

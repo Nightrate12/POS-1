@@ -26,7 +26,7 @@ include 'process/session_check.php';
         .sidebar {
             background-color: #333;
             color: #fff;
-            width: 230px;
+            width: 250px;
             padding: 20px;
             position: fixed;
             top: 0;
